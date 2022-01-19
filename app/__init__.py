@@ -1,6 +1,14 @@
 from flask import Flask
+import pymongo
+import os
 
-from .views import posts as posts_view
+from app import routes as posts_view
+
+DB = os.getenv('DATABASE')
+
+client = pymongo.MongoClient(DB)
+db = client['kenzie']
+collection = db['posts']
 
 def create_app():
 
